@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://PressButton.gd" type="Script" id=1]
+[ext_resource path="res://ReleaseButton.gd" type="Script" id=2]
+[ext_resource path="res://SendMotion.gd" type="Script" id=3]
+
+[node name="InputTree" type="Node"]
+
+[node name="PressDown" type="Node" parent="."]
+script = ExtResource( 1 )
+is_root_button = true
+button_to_press = "fight_down"
+frame_timer_limit = 25
+
+[node name="PressForward" type="Node" parent="PressDown"]
+script = ExtResource( 1 )
+button_to_press = "fight_right"
+frame_timer_limit = 25
+
+[node name="ReleaseDown" type="Node" parent="PressDown/PressForward"]
+script = ExtResource( 2 )
+button_to_release = "fight_down"
+frame_timer_limit = 25
+
+[node name="input_sender" type="Node" parent="PressDown/PressForward/ReleaseDown"]
+script = ExtResource( 3 )
+message = "Hadouken!"
+
+[node name="PressButton" type="Node" parent="."]
+script = ExtResource( 1 )
+is_root_button = true
+button_to_press = "fight_right"
+frame_timer_limit = 25
+
+[node name="PressButton" type="Node" parent="PressButton"]
+script = ExtResource( 1 )
+button_to_press = "fight_down"
+frame_timer_limit = 25
+
+[node name="ReleaseButton" type="Node" parent="PressButton/PressButton"]
+script = ExtResource( 2 )
+button_to_release = "fight_right"
+frame_timer_limit = 25
+
+[node name="PressButton" type="Node" parent="PressButton/PressButton/ReleaseButton"]
+script = ExtResource( 1 )
+button_to_press = "fight_right"
+frame_timer_limit = 25
+
+[node name="Send_Motion" type="Node" parent="PressButton/PressButton/ReleaseButton/PressButton"]
+script = ExtResource( 3 )
+message = "Dragon Punch!"
