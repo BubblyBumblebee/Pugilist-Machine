@@ -1,9 +1,12 @@
 extends Object
-
-class_name InputFrameFace
+class_name InputFra
 
 var frame: int
 enum ButtonState {PRESSED, RELEASED, UNCHANGED = -1}
+var up: int = ButtonState.UNCHANGED
+var down: int = ButtonState.UNCHANGED
+var left: int = ButtonState.UNCHANGED
+var right: int = ButtonState.UNCHANGED
 var a: int = ButtonState.UNCHANGED
 var b: int = ButtonState.UNCHANGED
 var c: int = ButtonState.UNCHANGED

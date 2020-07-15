@@ -1,11 +1,8 @@
 extends Node
 
-
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+onready var AnimPlayer = owner.get_node("../AnimationPlayer")
 
 
 func activate():
+	AnimPlayer.play("test_anim")
 	pass

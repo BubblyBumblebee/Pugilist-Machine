@@ -10,128 +10,108 @@
 [node name="InputTree" type="Node"]
 script = ExtResource( 4 )
 
+[node name="IsHit" type="Node" parent="."]
+script = ExtResource( 6 )
+value_to_check = "hit"
+
+[node name="DoStunAnimation" type="Node" parent="IsHit"]
+script = ExtResource( 5 )
+
 [node name="IsAwake" type="Node" parent="."]
 script = ExtResource( 6 )
+value_to_check = "awake"
 
 [node name="IsJumping" type="Node" parent="IsAwake"]
 script = ExtResource( 6 )
+value_to_check = "jumping"
 
 [node name="JumpingButtonsGoHere" type="Node" parent="IsAwake/IsJumping"]
 
 [node name="IsStanding" type="Node" parent="IsAwake"]
 script = ExtResource( 6 )
+value_to_check = "standing"
+
+[node name="PressUp" type="Node" parent="IsAwake/IsStanding"]
+script = ExtResource( 1 )
 
 [node name="PressDown" type="Node" parent="IsAwake/IsStanding"]
 script = ExtResource( 1 )
-is_root_button = true
-button_to_press = "fight_down"
-frame_timer_limit = 25
+button_to_press = 1
 
 [node name="PressForward" type="Node" parent="IsAwake/IsStanding/PressDown"]
 script = ExtResource( 1 )
-button_to_press = "fight_right"
-frame_timer_limit = 25
+button_to_press = 3
 
 [node name="ReleaseDown" type="Node" parent="IsAwake/IsStanding/PressDown/PressForward"]
 script = ExtResource( 2 )
-button_to_release = "fight_down"
-frame_timer_limit = 25
+button_to_release = 1
 
 [node name="PressA" type="Node" parent="IsAwake/IsStanding/PressDown/PressForward/ReleaseDown"]
 script = ExtResource( 1 )
-button_to_press = "fight_1"
-frame_timer_limit = 1
+button_to_press = 4
 
 [node name="DoHadoukenAnimation" type="Node" parent="IsAwake/IsStanding/PressDown/PressForward/ReleaseDown/PressA"]
-script = ExtResource( 3 )
-message = "Hadouken!"
+script = ExtResource( 5 )
 
 [node name="PressB" type="Node" parent="IsAwake/IsStanding/PressDown/PressForward/ReleaseDown"]
 script = ExtResource( 1 )
+button_to_press = 5
 
 [node name="DoTatsuAnimation" type="Node" parent="IsAwake/IsStanding/PressDown/PressForward/ReleaseDown/PressB"]
-script = ExtResource( 3 )
+script = ExtResource( 5 )
 
-[node name="ZMotion" type="Node" parent="IsAwake/IsStanding"]
+[node name="PressLeft" type="Node" parent="IsAwake/IsStanding"]
 script = ExtResource( 1 )
-is_root_button = true
-button_to_press = "fight_right"
-frame_timer_limit = 25
+button_to_press = 2
 
-[node name="PressDown" type="Node" parent="IsAwake/IsStanding/ZMotion"]
+[node name="PressRight" type="Node" parent="IsAwake/IsStanding"]
 script = ExtResource( 1 )
-button_to_press = "fight_down"
-frame_timer_limit = 25
+button_to_press = 3
 
-[node name="ReleaseRight" type="Node" parent="IsAwake/IsStanding/ZMotion/PressDown"]
+[node name="PressDown" type="Node" parent="IsAwake/IsStanding/PressRight"]
+script = ExtResource( 1 )
+
+[node name="ReleaseRight" type="Node" parent="IsAwake/IsStanding/PressRight/PressDown"]
 script = ExtResource( 2 )
-button_to_release = "fight_right"
-frame_timer_limit = 25
 
-[node name="PressDown" type="Node" parent="IsAwake/IsStanding/ZMotion/PressDown/ReleaseRight"]
+[node name="PressDown" type="Node" parent="IsAwake/IsStanding/PressRight/PressDown/ReleaseRight"]
 script = ExtResource( 1 )
-button_to_press = "fight_right"
-frame_timer_limit = 25
 
-[node name="PressA" type="Node" parent="IsAwake/IsStanding/ZMotion/PressDown/ReleaseRight/PressDown"]
+[node name="PressA" type="Node" parent="IsAwake/IsStanding/PressRight/PressDown/ReleaseRight/PressDown"]
 script = ExtResource( 1 )
-button_to_press = "fight_1"
-frame_timer_limit = 1
 
-[node name="DoShoryukenAnimation" type="Node" parent="IsAwake/IsStanding/ZMotion/PressDown/ReleaseRight/PressDown/PressA"]
+[node name="DoShoryukenAnimation" type="Node" parent="IsAwake/IsStanding/PressRight/PressDown/ReleaseRight/PressDown/PressA"]
 script = ExtResource( 3 )
 message = "Dragon Punch!"
 
 [node name="PressA" type="Node" parent="IsAwake/IsStanding"]
 script = ExtResource( 1 )
-is_root_button = true
-button_to_press = "fight_a"
-frame_timer_limit = 1
+button_to_press = 4
 
 [node name="PressB" type="Node" parent="IsAwake/IsStanding"]
 script = ExtResource( 1 )
-is_root_button = true
-button_to_press = "fight_b"
-frame_timer_limit = 1
+button_to_press = 5
 
 [node name="PressC" type="Node" parent="IsAwake/IsStanding"]
 script = ExtResource( 1 )
-is_root_button = true
-button_to_press = "fight_c"
-frame_timer_limit = 1
+button_to_press = 6
 
 [node name="PressD" type="Node" parent="IsAwake/IsStanding"]
 script = ExtResource( 1 )
-is_root_button = true
-button_to_press = "fight_d"
-frame_timer_limit = 1
+button_to_press = 7
 
 [node name="PressE" type="Node" parent="IsAwake/IsStanding"]
 script = ExtResource( 1 )
-is_root_button = true
-button_to_press = "fight_e"
-frame_timer_limit = 1
+button_to_press = 8
 
 [node name="PressF" type="Node" parent="IsAwake/IsStanding"]
 script = ExtResource( 1 )
-is_root_button = true
-button_to_press = "fight_f"
-frame_timer_limit = 1
+button_to_press = 9
 
 [node name="PressG" type="Node" parent="IsAwake/IsStanding"]
 script = ExtResource( 1 )
-is_root_button = true
-button_to_press = "fight_g"
-frame_timer_limit = 1
+button_to_press = 10
 
 [node name="PressH" type="Node" parent="IsAwake/IsStanding"]
 script = ExtResource( 1 )
-is_root_button = true
-button_to_press = "fight_g"
-frame_timer_limit = 1
-
-[node name="IsHit" type="Node" parent="."]
-script = ExtResource( 6 )
-
-[node name="DoStunAnimation" type="Node" parent="IsHit"]
-script = ExtResource( 5 )
+button_to_press = 11
