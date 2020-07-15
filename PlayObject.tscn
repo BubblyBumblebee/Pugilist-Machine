@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://PlayObject.gd" type="Script" id=1]
 [ext_resource path="res://InputTree.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Blackboard.gd" type="Script" id=3]
+[ext_resource path="res://MoveParser.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 45, 75 )
@@ -23,5 +25,12 @@ shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PushBox"]
 shape = SubResource( 2 )
+
+[node name="Blackboard" type="Node" parent="."]
+script = ExtResource( 3 )
+buffer_limit = 10
+
+[node name="MoveParser" type="Node" parent="Blackboard"]
+script = ExtResource( 4 )
 
 [node name="InputTree" parent="." instance=ExtResource( 2 )]

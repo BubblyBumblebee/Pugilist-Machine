@@ -3,6 +3,7 @@ extends Node2D
 var controller_id: int = -1
 
 enum ButtonState {PRESSED, RELEASED, UNCHANGED = -1}
+enum Facing {LEFT, RIGHT}
 
 onready var input_list: Array = []
 onready var frame_buttons_dir: InputFrameDirection = InputFrameDirection.new()

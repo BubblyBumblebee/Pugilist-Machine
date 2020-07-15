@@ -12,17 +12,14 @@ func _enter_tree():
 	if is_root_button == false:
 		set_process_input(false)
 		set_physics_process(false)
-	elif is_root_button == true:
-		set_process_input(true)
-		set_physics_process(true)
 		
 
 func _input(event):
 	if Input.is_action_just_pressed(button_to_press):
 		set_process_input(false)
-		print(button_to_press)
+		print(str(button_to_press + " pressed"))
 		for i in get_children():
-			i.activate_all()
+			i.activate()
 
 func _physics_process(_delta):
 	if frame_timer < frame_timer_limit:
@@ -32,16 +29,16 @@ func _physics_process(_delta):
 		if is_root_button:
 			set_process_input(true)
 		for i in get_children():
-			i.deactivate_all()
+			i.deactivate()
 
 
-func deactivate_all():
+func deactivate():
 	set_physics_process(false)
 	set_process_input(false)
 	for i in get_children():
-		i.deactivate_all()
+		i.deactivate()
 	
-func activate_all():
+func activate():
 	set_physics_process(true)
 	set_process_input(true)
 

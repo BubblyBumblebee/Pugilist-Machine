@@ -1,0 +1,3 @@
+extends Object
+
+enum INPUTS {QUARTER_CIRCLE, DRAGON_PUNCH, A, B, C, D, E, F, G, H, DOWN, UP, RIGHT, LEFT}
