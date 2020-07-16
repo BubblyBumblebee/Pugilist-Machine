@@ -115,6 +115,15 @@ fight_h={
  ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="PlayerOne"
+2d_physics/layer_2="PlayerTwo"
+2d_physics/layer_3="Floor"
+2d_physics/layer_4="ProjectileOne"
+2d_physics/layer_5="ProjectileTwo"
+2d_physics/layer_6="Inactive"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

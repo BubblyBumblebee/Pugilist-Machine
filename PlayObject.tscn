@@ -11,6 +11,7 @@ extents = Vector2( 25, 50 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "test_anim"
+step = 0.016
 tracks/0/type = "value"
 tracks/0/path = NodePath("BroadphaseBox/CollisionShape2D:modulate")
 tracks/0/interp = 1
@@ -18,7 +19,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
+"times": PoolRealArray( 0, 0.496, 0.992 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.851563, 0.387735, 0.206238, 1 ), Color( 1, 1, 1, 1 ) ]

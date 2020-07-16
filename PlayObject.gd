@@ -44,7 +44,7 @@ func _input(event):
 		if Input.is_action_just_released("fight_right"):
 			frame_buttons.right = ButtonState.RELEASED
 		if Input.is_action_just_pressed("fight_left"):
-			frame_buttons.left = ButtonState.PRESSED			
+			frame_buttons.left = ButtonState.PRESSED
 		if Input.is_action_just_released("fight_left"):
 			frame_buttons.left = ButtonState.RELEASED
 		if Input.is_action_just_pressed("fight_a"):
