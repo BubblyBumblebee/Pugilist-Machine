@@ -11,7 +11,6 @@ extents = Vector2( 25, 50 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "test_anim"
-length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("BroadphaseBox/CollisionShape2D:modulate")
 tracks/0/interp = 1
@@ -43,4 +42,5 @@ shape = SubResource( 2 )
 [node name="InputTree" parent="." instance=ExtResource( 2 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_process_mode = 0
 anims/test_anim = SubResource( 3 )

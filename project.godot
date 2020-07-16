@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://PressButton.gd"
 }, {
 "base": "Node",
+"class": "PressFace",
+"language": "GDScript",
+"path": "res://PressFace.gd"
+}, {
+"base": "Node",
 "class": "ReleaseButton",
 "language": "GDScript",
 "path": "res://ReleaseButton.gd"
@@ -32,6 +37,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "InputFra": "",
 "PressButton": "",
+"PressFace": "",
 "ReleaseButton": "",
 "input_sender": ""
 }

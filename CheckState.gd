@@ -17,9 +17,9 @@ func _ready():
 #func _process(delta):
 #	pass
 
-func activate(buffer):
+func activate(buffer, sliced_buffer):
 	var state = input_tree.state 
 	if state[value_to_check]:
 		for c in children:
-			c.activate(buffer)
+			c.activate(buffer, sliced_buffer)
 

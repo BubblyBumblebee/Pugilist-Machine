@@ -33,84 +33,59 @@ func _input(event):
 	if event.device == controller_id:
 		if Input.is_action_just_pressed("fight_up"):
 			frame_buttons.up = ButtonState.PRESSED
-		elif Input.is_action_just_released("fight_up"):
+		if Input.is_action_just_released("fight_up"):
 			frame_buttons.up = ButtonState.RELEASED
-		elif !Input.is_action_just_pressed("fight_up") && !Input.is_action_just_released("fight_up"):
-			frame_buttons.up = ButtonState.UNCHANGED
 		if Input.is_action_just_pressed("fight_down"):
 			frame_buttons.down = ButtonState.PRESSED
-		elif Input.is_action_just_released("fight_down"):
+		if Input.is_action_just_released("fight_down"):
 			frame_buttons.down = ButtonState.RELEASED
-		elif !Input.is_action_just_pressed("fight_down") && !Input.is_action_just_released("fight_down"):
-			frame_buttons.down = ButtonState.UNCHANGED
 		if Input.is_action_just_pressed("fight_right"):
 			frame_buttons.right = ButtonState.PRESSED
-		elif Input.is_action_just_released("fight_right"):
+		if Input.is_action_just_released("fight_right"):
 			frame_buttons.right = ButtonState.RELEASED
-		elif !Input.is_action_just_pressed("fight_right") && !Input.is_action_just_released("fight_right"):
-			frame_buttons.right = ButtonState.UNCHANGED
 		if Input.is_action_just_pressed("fight_left"):
-			frame_buttons.left = ButtonState.PRESSED
-		elif Input.is_action_just_released("fight_left"):
+			frame_buttons.left = ButtonState.PRESSED			
+		if Input.is_action_just_released("fight_left"):
 			frame_buttons.left = ButtonState.RELEASED
-		elif !Input.is_action_just_pressed("fight_left") && !Input.is_action_just_released("fight_left"):
-			frame_buttons.left = ButtonState.UNCHANGED
 		if Input.is_action_just_pressed("fight_a"):
-			frame_buttons.left = ButtonState.PRESSED
-		elif Input.is_action_just_released("fight_a"):
-			frame_buttons.left = ButtonState.RELEASED
-		elif !Input.is_action_just_pressed("fight_a") && !Input.is_action_just_released("fight_a"):
-			frame_buttons.left = ButtonState.UNCHANGED
+			frame_buttons.a = ButtonState.PRESSED
+		if Input.is_action_just_released("fight_a"):
+			frame_buttons.a = ButtonState.RELEASED
 		if Input.is_action_just_pressed("fight_b"):
-			frame_buttons.left = ButtonState.PRESSED
-		elif Input.is_action_just_released("fight_b"):
-			frame_buttons.left = ButtonState.RELEASED
-		elif !Input.is_action_just_pressed("fight_b") && !Input.is_action_just_released("fight_b"):
-			frame_buttons.left = ButtonState.UNCHANGED
+			frame_buttons.b = ButtonState.PRESSED
+		if Input.is_action_just_released("fight_b"):
+			frame_buttons.b = ButtonState.RELEASED
 		if Input.is_action_just_pressed("fight_c"):
-			frame_buttons.left = ButtonState.PRESSED
-		elif Input.is_action_just_released("fight_c"):
-			frame_buttons.left = ButtonState.RELEASED
-		elif !Input.is_action_just_pressed("fight_c") && !Input.is_action_just_released("fight_c"):
-			frame_buttons.left = ButtonState.UNCHANGED
+			frame_buttons.c = ButtonState.PRESSED
+		if Input.is_action_just_released("fight_c"):
+			frame_buttons.c = ButtonState.RELEASED
 		if Input.is_action_just_pressed("fight_d"):
-			frame_buttons.left = ButtonState.PRESSED
-		elif Input.is_action_just_released("fight_d"):
-			frame_buttons.left = ButtonState.RELEASED
-		elif !Input.is_action_just_pressed("fight_d") && !Input.is_action_just_released("fight_d"):
-			frame_buttons.left = ButtonState.UNCHANGED
+			frame_buttons.d = ButtonState.PRESSED
+		if Input.is_action_just_released("fight_d"):
+			frame_buttons.d = ButtonState.RELEASED
 		if Input.is_action_just_pressed("fight_e"):
-			frame_buttons.left = ButtonState.PRESSED
-		elif Input.is_action_just_released("fight_e"):
-			frame_buttons.left = ButtonState.RELEASED
-		elif !Input.is_action_just_pressed("fight_e") && !Input.is_action_just_released("fight_e"):
-			frame_buttons.left = ButtonState.UNCHANGED
+			frame_buttons.e = ButtonState.PRESSED
+		if Input.is_action_just_released("fight_e"):
+			frame_buttons.e = ButtonState.RELEASED
 		if Input.is_action_just_pressed("fight_f"):
-			frame_buttons.left = ButtonState.PRESSED
-		elif Input.is_action_just_released("fight_f"):
-			frame_buttons.left = ButtonState.RELEASED
-		elif !Input.is_action_just_pressed("fight_f") && !Input.is_action_just_released("fight_f"):
-			frame_buttons.left = ButtonState.UNCHANGED
+			frame_buttons.f = ButtonState.PRESSED
+		if Input.is_action_just_released("fight_f"):
+			frame_buttons.f = ButtonState.RELEASED
 		if Input.is_action_just_pressed("fight_g"):
-			frame_buttons.left = ButtonState.PRESSED
-		elif Input.is_action_just_released("fight_g"):
-			frame_buttons.left = ButtonState.RELEASED
-		elif !Input.is_action_just_pressed("fight_g") && !Input.is_action_just_released("fight_g"):
-			frame_buttons.left = ButtonState.UNCHANGED
+			frame_buttons.g = ButtonState.PRESSED
+		if Input.is_action_just_released("fight_g"):
+			frame_buttons.g = ButtonState.RELEASED
 		if Input.is_action_just_pressed("fight_h"):
-			frame_buttons.left = ButtonState.PRESSED
-		elif Input.is_action_just_released("fight_h"):
-			frame_buttons.left = ButtonState.RELEASED
-		elif !Input.is_action_just_pressed("fight_h") && !Input.is_action_just_released("fight_h"):
-			frame_buttons.left = ButtonState.UNCHANGED
-		
+			frame_buttons.h = ButtonState.PRESSED
+		if Input.is_action_just_released("fight_h"):
+			frame_buttons.h = ButtonState.RELEASED
 
 func _physics_process(_delta):
 	game_frame += 1
 	
 	frame_buttons.frame = game_frame
 	# Place inputs into their place in the input_list.
-	input_list.append(frame_buttons)	
+	input_list.append(frame_buttons)
 	# Clear input frame after we're done with it.
 	frame_buttons = InputFra.new()
 	
