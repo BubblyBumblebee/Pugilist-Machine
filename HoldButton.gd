@@ -1,6 +1,6 @@
 extends Node
 
-class_name PressButton
+class_name HoldButton
 
 export(int) var buffer_length: int = 0
 enum buttonset {UP, DOWN, LEFT, RIGHT, A, B, C, D, E, F, G, H}

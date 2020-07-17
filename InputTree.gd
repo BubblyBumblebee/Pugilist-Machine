@@ -10,7 +10,7 @@ var state = {"standing": true, "awake": true, "jumping": false, "hit": false}
 
 # Called when the node enters the scene tree for the first time.
 func _physics_process(delta):
-	var input_list_slice: Array = player.input_list.slice(player.input_list.size() - 15, player.input_list.size(), true)
+	var input_list_slice: Array = player.input_list.slice(player.input_list.size() - 10, player.input_list.size(), true)
 	var buffer: Array = []
 	var sliced_buffer: Array = []
 	
@@ -31,7 +31,7 @@ func _physics_process(delta):
 		frame_in.append(i.h)
 		buffer.append(frame_in)
 		sliced_buffer.append(frame_in)
-		
+
 	for c in children:
 		c.activate(buffer, sliced_buffer)
 	pass

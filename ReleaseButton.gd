@@ -28,7 +28,6 @@ func activate(buffer, sliced_buffer):
 	for i in range(0, b.size()):
 		var check_frame = b[i]
 		if check_frame[button_to_release] == ButtonState.RELEASED:
-			print(str("Released " + str(button_to_release)))
 			var c = get_children()
 			for child in c:
 				child.activate(buffer, buffer.slice(i + 1, buffer.size()))

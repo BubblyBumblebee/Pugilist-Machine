@@ -1,16 +1,17 @@
 extends Node2D
 
+enum player {PLAYER_ONE, PLAYER_TWO}
+export(player) var side
 var controller_id: int = -1
 
-enum ButtonState {PRESSED, RELEASED, UNCHANGED = -1}
-enum Facing {LEFT, RIGHT}
+enum ButtonState {PRESSED, RELEASED, HELD, UNHELD = -1}
+enum FacingSet {LEFT, RIGHT}
+var facing: int
 
 onready var input_list: Array = []
 onready var frame_buttons: InputFra = InputFra.new()
 
 var game_frame = 0
-
-onready var groundray = $GroundRay
 
 var xvelocity: int = 5
 func _enter_tree():
@@ -31,50 +32,86 @@ func _ready():
 func _input(event):
 	# First check if controller matches the assigned id.
 	if event.device == controller_id:
+		if Input.is_action_held("fight_up"):
+			frame_buttons.up = ButtonState.HELD
 		if Input.is_action_just_pressed("fight_up"):
 			frame_buttons.up = ButtonState.PRESSED
 		if Input.is_action_just_released("fight_up"):
 			frame_buttons.up = ButtonState.RELEASED
+		if Input.is_action_held("fight_down"):
+			frame_buttons.down = ButtonState.HELD
 		if Input.is_action_just_pressed("fight_down"):
 			frame_buttons.down = ButtonState.PRESSED
 		if Input.is_action_just_released("fight_down"):
 			frame_buttons.down = ButtonState.RELEASED
-		if Input.is_action_just_pressed("fight_right"):
+		if Input.is_action_held("fight_right") && facing == FacingSet.RIGHT:
+			frame_buttons.right = ButtonState.HELD
+		if Input.is_action_just_pressed("fight_right") && facing == FacingSet.RIGHT:
 			frame_buttons.right = ButtonState.PRESSED
-		if Input.is_action_just_released("fight_right"):
+		if Input.is_action_just_released("fight_right") && facing == FacingSet.RIGHT:
 			frame_buttons.right = ButtonState.RELEASED
-		if Input.is_action_just_pressed("fight_left"):
+		if Input.is_action_held("fight_left") && facing == FacingSet.RIGHT:
+			frame_buttons.left = ButtonState.HELD
+		if Input.is_action_just_pressed("fight_left") && facing == FacingSet.RIGHT:
 			frame_buttons.left = ButtonState.PRESSED
-		if Input.is_action_just_released("fight_left"):
+		if Input.is_action_just_released("fight_left") && facing == FacingSet.RIGHT:
 			frame_buttons.left = ButtonState.RELEASED
+		if Input.is_action_held("fight_right") && facing == FacingSet.LEFT:
+			frame_buttons.left = ButtonState.HELD
+		if Input.is_action_just_pressed("fight_right") && facing == FacingSet.LEFT:
+			frame_buttons.left = ButtonState.PRESSED
+		if Input.is_action_just_released("fight_right") && facing == FacingSet.LEFT:
+			frame_buttons.left = ButtonState.RELEASED
+		if Input.is_action_held("fight_left") && facing == FacingSet.LEFT:
+			frame_buttons.right = ButtonState.HELD
+		if Input.is_action_just_pressed("fight_left") && facing == FacingSet.LEFT:
+			frame_buttons.right = ButtonState.PRESSED
+		if Input.is_action_just_released("fight_left") && facing == FacingSet.LEFT:
+			frame_buttons.right = ButtonState.RELEASED
+		if Input.is_action_held("fight_a"):
+			frame_buttons.a = ButtonState.HELD
 		if Input.is_action_just_pressed("fight_a"):
 			frame_buttons.a = ButtonState.PRESSED
 		if Input.is_action_just_released("fight_a"):
 			frame_buttons.a = ButtonState.RELEASED
+		if Input.is_action_held("fight_b"):
+			frame_buttons.b = ButtonState.HELD
 		if Input.is_action_just_pressed("fight_b"):
 			frame_buttons.b = ButtonState.PRESSED
 		if Input.is_action_just_released("fight_b"):
 			frame_buttons.b = ButtonState.RELEASED
+		if Input.is_action_held("fight_c"):
+			frame_buttons.c = ButtonState.HELD
 		if Input.is_action_just_pressed("fight_c"):
 			frame_buttons.c = ButtonState.PRESSED
 		if Input.is_action_just_released("fight_c"):
 			frame_buttons.c = ButtonState.RELEASED
+		if Input.is_action_held("fight_d"):
+			frame_buttons.d = ButtonState.HELD
 		if Input.is_action_just_pressed("fight_d"):
 			frame_buttons.d = ButtonState.PRESSED
 		if Input.is_action_just_released("fight_d"):
 			frame_buttons.d = ButtonState.RELEASED
+		if Input.is_action_held("fight_e"):
+			frame_buttons.e = ButtonState.HELD
 		if Input.is_action_just_pressed("fight_e"):
 			frame_buttons.e = ButtonState.PRESSED
 		if Input.is_action_just_released("fight_e"):
 			frame_buttons.e = ButtonState.RELEASED
+		if Input.is_action_held("fight_f"):
+			frame_buttons.f = ButtonState.HELD
 		if Input.is_action_just_pressed("fight_f"):
 			frame_buttons.f = ButtonState.PRESSED
 		if Input.is_action_just_released("fight_f"):
 			frame_buttons.f = ButtonState.RELEASED
+		if Input.is_action_held("fight_g"):
+			frame_buttons.g = ButtonState.HELD
 		if Input.is_action_just_pressed("fight_g"):
 			frame_buttons.g = ButtonState.PRESSED
 		if Input.is_action_just_released("fight_g"):
 			frame_buttons.g = ButtonState.RELEASED
+		if Input.is_action_held("fight_h"):
+			frame_buttons.h = ButtonState.HELD
 		if Input.is_action_just_pressed("fight_h"):
 			frame_buttons.h = ButtonState.PRESSED
 		if Input.is_action_just_released("fight_h"):
@@ -90,21 +127,13 @@ func _physics_process(_delta):
 	frame_buttons = InputFra.new()
 	
 	# Process collisions.
-	
-	# For now, just check if the ground ray has touched the ground. If so, stop moving downward.
-	if (groundray.cast_to.y + self.position.y) > 400:
-		xvelocity = 0
-	# If the end of the ground ray has penetrated the floor, go back up to just above the floor.
-		self.position.y -= self.position.y - 400 + groundray.cast_to.y
-
-	# Each frame, move downward by some amount of pixels.
-	self.position = self.position + Vector2(0, xvelocity)
-
-	# Trigger move parser.
-
+func _on_FightBox_area_entered(area):
+	print(area.owner.name)
+	pass
 
 func test_setup():
 	controller_id = 0
+	facing = FacingSet.RIGHT
 
 func integrated_setup():
 	controller_id = 0

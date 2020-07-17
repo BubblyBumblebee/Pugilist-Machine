@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://PressButton.gd" type="Script" id=1]
 [ext_resource path="res://ReleaseButton.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://InputTree.gd" type="Script" id=4]
 [ext_resource path="res://DoAnimation.gd" type="Script" id=5]
 [ext_resource path="res://CheckState.gd" type="Script" id=6]
+[ext_resource path="res://HoldButton.gd" type="Script" id=7]
 
 [node name="InputTree" type="Node"]
 script = ExtResource( 4 )
@@ -36,6 +37,7 @@ script = ExtResource( 1 )
 
 [node name="PressDown" type="Node" parent="IsAwake/IsStanding"]
 script = ExtResource( 1 )
+buffer_length = 10
 button_to_press = 1
 
 [node name="PressForward" type="Node" parent="IsAwake/IsStanding/PressDown"]
@@ -49,16 +51,20 @@ button_to_release = 1
 [node name="PressA" type="Node" parent="IsAwake/IsStanding/PressDown/PressForward/ReleaseDown"]
 script = ExtResource( 1 )
 button_to_press = 4
+type = 1
 
 [node name="DoHadoukenAnimation" type="Node" parent="IsAwake/IsStanding/PressDown/PressForward/ReleaseDown/PressA"]
 script = ExtResource( 5 )
+animation_name = "test_hadouken"
 
 [node name="PressB" type="Node" parent="IsAwake/IsStanding/PressDown/PressForward/ReleaseDown"]
 script = ExtResource( 1 )
 button_to_press = 5
+type = 1
 
 [node name="DoTatsuAnimation" type="Node" parent="IsAwake/IsStanding/PressDown/PressForward/ReleaseDown/PressB"]
 script = ExtResource( 5 )
+animation_name = "test_tatsu"
 
 [node name="PressLeft" type="Node" parent="IsAwake/IsStanding"]
 script = ExtResource( 1 )
@@ -115,3 +121,6 @@ button_to_press = 10
 [node name="PressH" type="Node" parent="IsAwake/IsStanding"]
 script = ExtResource( 1 )
 button_to_press = 11
+
+[node name="HoldLeft" type="Node" parent="IsAwake/IsStanding"]
+script = ExtResource( 7 )

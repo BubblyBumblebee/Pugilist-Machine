@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AnimationSender",
+"language": "GDScript",
+"path": "res://DoAnimation.gd"
+}, {
+"base": "Node",
+"class": "HoldButton",
+"language": "GDScript",
+"path": "res://HoldButton.gd"
+}, {
 "base": "Object",
 "class": "InputFra",
 "language": "GDScript",
@@ -35,6 +45,8 @@ _global_script_classes=[ {
 "path": "res://SendMotion.gd"
 } ]
 _global_script_class_icons={
+"AnimationSender": "",
+"HoldButton": "",
 "InputFra": "",
 "PressButton": "",
 "PressFace": "",
@@ -117,12 +129,11 @@ fight_h={
 
 [layer_names]
 
-2d_physics/layer_1="PlayerOne"
-2d_physics/layer_2="PlayerTwo"
-2d_physics/layer_3="Floor"
-2d_physics/layer_4="ProjectileOne"
-2d_physics/layer_5="ProjectileTwo"
-2d_physics/layer_6="Inactive"
+2d_physics/layer_1="PlayerOneHurtBoxes"
+2d_physics/layer_2="PlayerTwoHurtBoxes"
+2d_physics/layer_3="PlayerOneHitBoxes"
+2d_physics/layer_4="PlayerTwoHitBoxes"
+2d_physics/layer_5="SolidBoxes"
 
 [rendering]
 
