@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://PugTree.gd" type="Script" id=1]
 [ext_resource path="res://InputTree.gd" type="Script" id=4]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 1 )
+Moves = [  ]
 
 [node name="InputTree" type="Node"]
 script = ExtResource( 4 )
+movelist = SubResource( 1 )

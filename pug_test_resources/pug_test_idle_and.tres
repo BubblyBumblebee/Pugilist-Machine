@@ -5,4 +5,4 @@
 [resource]
 script = ExtResource( 1 )
 validator_type = 0
-validators = [  ]
+elements = [  ]
