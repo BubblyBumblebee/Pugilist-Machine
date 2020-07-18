@@ -1,11 +1,73 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://PugTree.gd" type="Script" id=1]
+[ext_resource path="res://PugMove.gd" type="Script" id=2]
+[ext_resource path="res://PugValidator.gd" type="Script" id=3]
 [ext_resource path="res://InputTree.gd" type="Script" id=4]
+[ext_resource path="res://PugButtonSequence.gd" type="Script" id=5]
+[ext_resource path="res://PugButtonPress.gd" type="Script" id=6]
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 6 )
+in_sequence = true
+button = "pug_up"
+type = 0
+hold_time = 0
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 6 )
+in_sequence = true
+button = "pug_b"
+type = 0
+hold_time = 0
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 5 )
+frame_limit = 25
+button_sequence = [ SubResource( 3 ), SubResource( 4 ) ]
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 3 )
+validator_type = 0
+elements = [ SubResource( 5 ) ]
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 2 )
+validators = [ SubResource( 6 ) ]
+move_to_play = "test_tatsu"
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 6 )
+in_sequence = true
+button = "pug_down"
+type = 0
+hold_time = 0
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 6 )
+in_sequence = true
+button = "pug_a"
+type = 0
+hold_time = 0
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 5 )
+frame_limit = 25
+button_sequence = [ SubResource( 7 ), SubResource( 8 ) ]
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 3 )
+validator_type = 0
+elements = [ SubResource( 9 ) ]
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 2 )
+validators = [ SubResource( 10 ) ]
+move_to_play = "test_hadou"
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 1 )
-Moves = [  ]
+moves = [ SubResource( 2 ), SubResource( 11 ) ]
 
 [node name="InputTree" type="Node"]
 script = ExtResource( 4 )

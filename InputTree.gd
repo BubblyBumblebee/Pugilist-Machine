@@ -15,11 +15,10 @@ func _physics_process(delta):
 	process_tree()
 	pass
 
-func get_buffer() -> Array:
+func get_buffer() -> void:
 	# Here we slice off the last several frames of the input list to put in the buffer.
 	# Let's set an int variable later to easily change how many. 
 	buffer = player.input_list.slice(player.input_list.size() - 120, player.input_list.size(), true)
-	return buffer
 
 func get_sliced_buffer() -> void:
 	sliced_buffer = buffer.duplicate()
@@ -30,7 +29,7 @@ func get_blackboard() -> Dictionary:
 	return blackboard
 
 func process_tree() -> void:
-	for move in movelist:
+	for move in movelist.moves:
 		# For now, let's just validate a couple button sequences.
 		# Then we can try validating some blackboard data.
 		
@@ -43,39 +42,34 @@ func process_tree() -> void:
 		# false only if all fail.
 		# Check number of validators against number of successes. If all AND &
 		# OR validators return true, play the animation.
-		
-		var validator_size: int = move.validators.size()
-		var validator_success_count: int = 0
+		var val_outcomes: Array = []
 		for validator in move.validators:
-			
-			var validator_result: bool
 			
 			if validator.validator_type == validator.type_set.AND:
 				# Do AND validation.
-				var and_success_count = validator.elements.get_size()
 				for element in validator.elements:
 					# Check element's class and pick the appropriate route.
 					# Share routes between AND & OR. The only difference is
 					# what they do with the results.
-					if element.get_class == "PugButtonSequence":
-						if validate_button_sequence(element) == true:
-							and_success_count += 1
-						else:
-							break
+					if element.get_class() == "PugButtonSequence":
+						val_outcomes.append(validate_button_sequence(element))
+						
 
-			if validator.validator_type == validator.type_set.OR:
+			elif validator.validator_type == validator.type_set.OR:
 				# Do OR validation.
 				for element in validator.elements:
 					# Check element's class and pick the appropriate route.
 					# Share routes between AND & OR. The only difference is
 					# what they do with the results.
-					if element.get_class == "PugButtonSequence":
-						if validate_button_sequence(element) == true:
-							validator_success_count += 1
+					val_outcomes.append(false)
+					if element.get_class() == "PugButtonSequence":
+						if validate_button_sequence(element):
+							val_outcomes[-1] = true
 							break
 		# Play the animation's move if all the validators were succesful.
-		if validator_success_count == validator_size:
+		if !val_outcomes.has(false):
 			AnimPlayer.play(move.move_to_play)
+			break
 
 # HELPER FUNCTIONS
 
@@ -90,19 +84,13 @@ func process_tree() -> void:
 # If we get all the buttons in the sequence, return true.
 
 func validate_button_sequence(element) -> bool:
-	var validation_target: int = element.size()
-	var validation_count: int = 0
-	var v_buffer: Array = buffer.duplicate(true).slice(buffer.size() - element.frame_limit, buffer.size(), true)
-	var v_sliced_buffer: Array = sliced_buffer.slice(sliced_buffer.size() - element.frame_limit, sliced_buffer.size(), true)
+	var v_buffer: Array = buffer.duplicate(true).slice(-element.frame_limit, buffer.size(), true)
+	var v_sliced_buffer: Array = sliced_buffer.slice(-element.frame_limit, sliced_buffer.size(), true)
 	for button in element:
 		if validate_button(button, v_buffer, v_sliced_buffer) == true:
-			validation_count += 1
+			return true
 		else:
 			return false
-	if validation_count == validation_target:
-		return true
-	else:
-		return false
 
 # BUTTON PRESS OR RELEASE
 # Select which buffer to check, `buffer` or `sliced buffer`.
@@ -126,8 +114,6 @@ func validate_button(button, v_buffer, v_sliced_buffer) -> bool:
 				for press in v_sliced_buffer[frame]:
 					if press.is_action_just_pressed(button.button):
 						return true
-				pass
-		pass
 	elif button.type == button.type_set.RELEASED:
 		if button.in_sequence:
 			for frame in range(0, v_sliced_buffer.size()):
